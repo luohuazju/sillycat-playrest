@@ -3,7 +3,12 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET         /                    controllers.Application.index()
+GET         /tasks               controllers.TaskApplication.items()
+GET         /tasks/:id           controllers.TaskApplication.item(id: Long)
+POST        /tasks               controllers.TaskApplication.save
+PUT         /tasks/:id           controllers.TaskApplication.update(id: Long)
+DELETE      /tasks/:id           controllers.TaskApplication.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET        /assets/*file        controllers.Assets.at(path="/public", file)

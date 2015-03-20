@@ -8,7 +8,9 @@ scalaVersion := "2.11.1"
 
 libraryDependencies ++= Seq(
   javaJdbc,
-  javaEbean,
-  cache,
-  javaWs
+  "mysql" % "mysql-connector-java" % "5.1.18",
+  "commons-dbutils" % "commons-dbutils" % "1.6"
+  //javaEbean,
+  //cache,
+  //javaWs
 )
