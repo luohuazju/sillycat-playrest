@@ -4,3 +4,4 @@ project/project/target
 .idea
 .settings
 logs
+.idea_modules

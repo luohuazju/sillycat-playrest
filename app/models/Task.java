@@ -13,7 +13,7 @@ public class Task {
 
     public String desn;
 
-    public Date start;
+    public Date startDate;
 
-    public Date end;
+    public Date endDate;
 }
