@@ -8,6 +8,9 @@ Command to Debug during developing
 Command to run the Test
 >activator test
 
+Command to run one test
+>activator "testOnly Application*"
+
 Command to migrate the database
 >sbt flywayMigrate
 

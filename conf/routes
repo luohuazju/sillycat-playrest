@@ -3,7 +3,6 @@
 # ~~~~
 
 # Home page
-GET         /                    controllers.Application.index()
 GET         /tasks               controllers.TaskApplication.items()
 GET         /tasks/:id           controllers.TaskApplication.item(id: Long)
 POST        /tasks               controllers.TaskApplication.save

@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import controllers.routes;
+import models.TaskDAO;
 import org.junit.*;
 
+import play.libs.Json;
 import play.mvc.*;
 import play.test.*;
 import play.data.DynamicForm;
@@ -28,17 +31,39 @@ import static org.fest.assertions.Assertions.*;
 */
 public class ApplicationTest {
 
-    @Test
-    public void simpleCheck() {
-        int a = 1 + 1;
-        assertThat(a).isEqualTo(2);
+    @BeforeClass
+    public static void before() {
+        running(fakeApplication(), new Runnable() {
+            public void run() {
+                TaskDAO.create();
+            }
+        });
+    }
+
+    @AfterClass
+    public static void after(){
+        running(fakeApplication(), new Runnable() {
+            public void run() {
+                TaskDAO.clean();
+            }
+        });
     }
 
     @Test
-    public void renderTemplate() {
-        Content html = views.html.index.render("Your new application is ready.");
-        assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Your new application is ready.");
+    public void dummy() {
+        int a = 1 + 1;
+        Assert.assertEquals(2, a);
+    }
+
+    @Test
+    public void list() {
+        running(fakeApplication(), new Runnable() {
+            public void run() {
+                Result result = controllers.TaskApplication.items();
+                assertThat(status(result)).isEqualTo(OK);
+                assertThat(Json.parse(contentAsString(result)).size() > 0).isTrue();
+            }
+        });
     }
 
 

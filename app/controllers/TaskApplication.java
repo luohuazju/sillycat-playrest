@@ -5,7 +5,6 @@ import models.TaskDAO;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
 
 import java.util.List;
 
