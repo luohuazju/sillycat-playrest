@@ -1,3 +1,5 @@
+import org.flywaydb.sbt.FlywayPlugin._
+
 name := """sillycat-playrest"""
 
 version := "1.0-SNAPSHOT"
@@ -15,3 +17,11 @@ libraryDependencies ++= Seq(
   //cache,
   //javaWs
 )
+
+seq(flywaySettings: _*)
+
+flywayUrl := "jdbc:mysql://localhost/playrest"
+
+flywayUser := "playrest"
+
+flywayPassword := "playrest"
