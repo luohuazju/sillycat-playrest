@@ -33,19 +33,15 @@ public class ApplicationTest {
 
     @BeforeClass
     public static void before() {
-        running(fakeApplication(), new Runnable() {
-            public void run() {
-                TaskDAO.create();
-            }
+        running(fakeApplication(), () -> {
+            TaskDAO.create();
         });
     }
 
     @AfterClass
     public static void after(){
-        running(fakeApplication(), new Runnable() {
-            public void run() {
-                TaskDAO.clean();
-            }
+        running(fakeApplication(), () -> {
+            TaskDAO.clean();
         });
     }
 
@@ -57,14 +53,11 @@ public class ApplicationTest {
 
     @Test
     public void list() {
-        running(fakeApplication(), new Runnable() {
-            public void run() {
-                Result result = controllers.TaskApplication.items();
-                assertThat(status(result)).isEqualTo(OK);
-                assertThat(Json.parse(contentAsString(result)).size() > 0).isTrue();
-            }
+        running(fakeApplication(), () -> {
+            Result result = controllers.TaskApplication.items();
+            assertThat(status(result)).isEqualTo(OK);
+            assertThat(Json.parse(contentAsString(result)).size() > 0).isTrue();
         });
     }
-
 
 }

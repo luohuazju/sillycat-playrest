@@ -3,8 +3,12 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import play.libs.Json;
+import play.mvc.Result;
 
 import java.util.List;
+
+import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.*;
 
 
@@ -15,19 +19,15 @@ public class ModelTest {
 
     @BeforeClass
     public static void before() {
-        running(fakeApplication(), new Runnable() {
-            public void run() {
-                TaskDAO.create();
-            }
+        running(fakeApplication(), () -> {
+            TaskDAO.create();
         });
     }
 
     @AfterClass
     public static void after(){
-        running(fakeApplication(), new Runnable() {
-            public void run() {
-                TaskDAO.clean();
-            }
+        running(fakeApplication(), () -> {
+            TaskDAO.clean();
         });
     }
 
@@ -39,11 +39,9 @@ public class ModelTest {
 
     @Test
     public void list(){
-        running(fakeApplication(), new Runnable() {
-            public void run() {
-                List list = TaskDAO.list();
-                Assert.assertNotNull(list);
-            }
+        running(fakeApplication(), () -> {
+            List list = TaskDAO.list();
+            Assert.assertNotNull(list);
         });
     }
 }

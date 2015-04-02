@@ -10,7 +10,7 @@ public class BaseDAO {
 
     private static Flyway initFlyway(){
         Flyway flyway = new Flyway();
-        flyway.setDataSource(DB.getDataSource());
+        flyway.setDataSource(DB.getDataSource("test"));
         return flyway;
     }
 
