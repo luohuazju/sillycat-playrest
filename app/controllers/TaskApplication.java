@@ -14,6 +14,7 @@ import java.util.List;
 public class TaskApplication extends Controller {
 
     public static Result items() {
+
         List<Task> items = TaskDAO.list();
         return ok(Json.toJson(items));
     }

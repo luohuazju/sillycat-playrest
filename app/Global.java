@@ -4,11 +4,15 @@ import com.fasterxml.jackson.databind.SerializationConfig;
 import play.GlobalSettings;
 import play.Logger;
 import play.api.Application;
+import play.api.mvc.Action;
 import play.api.mvc.RequestHeader;
 import play.libs.F;
 import play.libs.Json;
+import play.mvc.Http;
+import play.mvc.Result;
 import play.mvc.SimpleResult;
 
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -30,5 +34,9 @@ public class Global extends GlobalSettings{
         Logger.info("Application shutdown...");
     }
 
+    public play.mvc.Action onRequest(Http.Request request, Method actionMethod) {
+        Logger.debug("method=" + request.method() + " uri=" + request.uri() + " remote-address=" + request.remoteAddress());
+        return super.onRequest(request, actionMethod);
+    }
 
 }
